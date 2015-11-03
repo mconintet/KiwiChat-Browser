@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiwi Chat</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/toastr/toastr.min.css">
+    <link rel="stylesheet" href="assets/style.css"/>
+</head>
+<body>
+<div class="viewport container">
+
+    <div class="info">
+        <p>Your ID <b id="yourID">#1</b>, you can tell this number to your buddy.</p>
+        <div class="input-group">
+            <span class="input-group-addon">Chat with</span>
+            <input type="text" class="form-control" id="buddyIdInput"
+                   placeholder="your buddy by his user ID" aria-describedby="basic-addon1">
+        <span class="input-group-btn">
+        <button class="btn btn-default" id="btnSendBuddyId" type="button">Go!</button>
+        </span>
+        </div>
+    </div>
+
+    <div id="chatPanel" class="panel panel-default">
+        <div class="panel-body">
+
+        </div>
+    </div>
+
+    <div class="sendMsgPanel">
+        <textarea id="msgInput" class="form-control" rows="3"></textarea>
+
+        <div class="sendBox">
+            <label class="checkbox-inline">
+                <input type="checkbox" id="chkPressEnterSend"> Press [Enter] to send
+            </label>
+            <input class="btn btn-default" id="btnSendMsg" type="button" value="Send">
+        </div>
+    </div>
+</div>
+
+<!-- register -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="loginModalLabel">LOGIN</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="srvAddrInput">Server Address</label>
+
+                    <div class="input-group input-group-sm">
+                        <input type="text" id="srvAddrInput" class="form-control" placeholder="Service URI"
+                               value="ws://127.0.0.1:9876">
+                <span class="input-group-btn">
+                    <input id="btnConnect" class="btn btn-default" type="button" value="Connect"/>
+                    <input id="btnDisconnect" disabled="disabled" class="btn btn-default" type="button"
+                           value="Disconnect"/>
+                </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" class="form-control input-sm" id="loginEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" class="form-control input-sm" id="loginPassword" placeholder="Password">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="btnLogin" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- register -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="registerModalLabel">REGISTER</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" class="form-control input-sm" id="regEmail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" class="form-control input-sm" id="regPassword" placeholder="Password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="btnSubmitRegister" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--welcome-->
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" data-backdrop="static"
+     aria-labelledby="welcomeModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="welcomeModalLabel">WELCOME</h4>
+            </div>
+            <div class="modal-body">
+                <div class="jumbotron">
+                    <p>Let's chat!</p>
+
+                    <p>
+                        <a class="btn btn-default" href="#" id="btnGoToLogin" role="button">Login</a>
+                        <a class="btn btn-primary" href="#" id="btnGoToRegister" role="button">Register</a>
+                    </p>
+                </div>
+                <div class="form-group">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/jsTpl" data-name="msgOther">
+    <div class="msg other row">
+        <div class="col-md-4">
+            <div class="icon"></div>
+            <div class="msgContent">{{echo(context.msg)}}</div>
+        </div>
+    </div>
+</script>
+
+<script type="text/jsTpl" data-name="msgMe">
+    <div class="msg me row">
+        <div class="col-md-4 col-md-offset-8">
+            <div class="icon"></div>
+            <div class="msgContent">{{echo(context.msg)}}</div>
+        </div>
+    </div>
+</script>
+
+<script src="assets/jquery.min.js"></script>
+<script src="assets/bootstrap/bootstrap.min.js"></script>
+<script src="assets/toastr/toastr.min.js"></script>
+<script src="assets/Template.js"></script>
+<script src="assets/App.js"></script>
+</body>
+</html>
